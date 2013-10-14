@@ -1,8 +1,9 @@
 RageQuit
 ========
 
-RageQuit Game for CodingDojo Hackathon. 
+RageQuit Game "Protect Derpina"
 
+This is my very first javascript game. I learned collision validation, setTimeout, setInterval, keydown movements and image switches.
 
 Thank you for playing.
 
