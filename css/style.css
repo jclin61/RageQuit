@@ -74,6 +74,13 @@ textarea{
 			display: none;
 			height:120px;
 		}
+		#guide{
+			margin-top: 25px;
+			margin-right: 15px;
+			text-align: left;
+			float:right;
+
+		}
 #field{
 	border: 1px solid black;
 	width:600px;
@@ -123,4 +130,13 @@ textarea{
 }
 #restart{
 	visibility:visible;
+}
+.fb-comments{
+	margin-left: 15px;
+}
+.fb-like{
+	margin-left: 320px;
+}
+.reload{
+	height:20px;
 }

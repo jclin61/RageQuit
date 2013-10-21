@@ -15,7 +15,7 @@
  			collision();
  			
  			Game = setInterval(function(){randomTroll();},500);
- 			random_level = setInterval(function(){game_levels();},4500);
+ 			random_level = setInterval(function(){game_levels();},3000);
  			setTimeout(function(){
  				$("#damsel").attr('src','test_image/damsel2.png');
  			},5000);
@@ -40,11 +40,12 @@
  			{		
  				var randomizer = (Math.random());
 
- 				if(randomizer<=0.45)
+ 				if(randomizer<=0.35)
  				{
  					level1();
+ 					$("textarea").append("    => Movement restored <=" + "&#xA;");
  				}
- 				else if(randomizer>0.45 && randomizer <=0.75)
+ 				else if(randomizer>0.35 && randomizer <=0.75)
  				{
  					level2();
  				}
@@ -66,10 +67,10 @@
 	 				// console.log(rider_pos.top, rider_pos.left);
 	 				hit = 1+hit
 	 				$("textarea").append("=> You hit Troll" + "&#xA;");
-	 				$("span").html(hit);
+	 				$("#hits").html(hit);
 	 				console.log (hit);
 	 				$("#rider").css({
-	 					top: '350px',
+	 					top: '420px',
 	 					left:'10px'});
 	 			}
 	 			if(hit == 3)
@@ -95,6 +96,12 @@
 	 				$("textarea").append("===> You Win" + "&#xA;");
 	 			}
  			});	
+ 		}
+ 		
+ 		function restart()
+ 		{
+ 			
+ 			
  		}
  		
  		function randomTroll()
@@ -170,7 +177,7 @@
 					left = x + rand;
 					$('#troll').css({
  				 	visibility: 'hidden'});
- 				 	$("textarea").append('=> Troll says: "Catch Me If You Can' + "&#xA;");
+ 				 	$("textarea").append('=> Troll says: "Problem? TROLOLOL' + "&#xA;");
 					}
 					else
 					{
@@ -180,7 +187,7 @@
 					}
 				}
 
-				if(troll_pos.top<60 && troll_pos.left <60)
+				if(troll_pos.top<65 && troll_pos.left <65)
 	 			{
 	 				console.log('DAMSEL CAUGHT');
 	 				
@@ -207,10 +214,18 @@
 		          });
  		}
  		
+ 		// function level_restart()
+ 		// {
+ 			
+
+ 		// }
  		function level1() //Easy level. Everything moves as expected.
  		{
-	
+			$(document).unbind('keydown');
+			collision();
+			
 			$("#rider").attr('src','test_image/rider3.png');
+
 			
 	 		$(document).keydown(function(data){
 		          var x = parseInt($("#rider").css('left'));
@@ -218,7 +233,7 @@
 		          var top = y;
 		          var left = x;
 
-		          if(data.keyCode == 38){
+		          if(data.keyCode == 87){
 		            //direction = "top";
 		            {
 		            	if(top > 10)
@@ -227,7 +242,7 @@
 		            	}
 		            }
 		          }
-		          else if(data.keyCode == 40){
+		          else if(data.keyCode == 83){
 		            //direction = "down";
 		            {
 		            	if(top<430)
@@ -237,14 +252,14 @@
 
 		            }    
 		          }
-		          else if(data.keyCode == 37){
+		          else if(data.keyCode == 65){
 		            //direction = "left";
 		            if(left>10)
 		            	{
 		            		left = x - 20;
 		            	}
 		          }
-		          else if(data.keyCode == 39){
+		          else if(data.keyCode == 68){
 		            //direction = "right";
 		            if(left<530)
 		            	{
@@ -262,10 +277,8 @@
 
  		function level2()  // Hindered movement.
 	 	{
-	 		
+	 			collision();
  				$("#rider").attr('src','test_image/rider4.png');
- 				
-
 		 		$("textarea").append("    =>Troll Face used 'Confused Keys', and it is super effective. <=" + "&#xA;");
 		 		$("#troll").attr('src','test_image/troll2.png').css({
 		 					height: '60px'});
@@ -278,28 +291,28 @@
 		          var p_m_rand = rand * (Math.random() < 0.5? -1:1);
 
 
-		          if(data.keyCode == 38){
+		          if(data.keyCode == 87){
 		            //direction = "top";
 		            if(top > 10)
 	            	{
 	            		top = y - p_m_rand;
 	        		}
 		          }
-		          else if(data.keyCode == 40){
+		          else if(data.keyCode == 83){
 		            //direction = "down";
 		            if(top < 400)
 		            {
 		            	top = y + p_m_rand;
 		        	}
 		          }
-		          else if(data.keyCode == 37){
+		          else if(data.keyCode == 65){
 		            //direction = "left";
 		            if(left > 10)
 		            {
 		            	left = x - p_m_rand;
 		            }
 		          }
-		          else if(data.keyCode == 39){
+		          else if(data.keyCode == 68){
 		            //direction = "right";
 		            if(left < 520)
 		            {
@@ -318,6 +331,8 @@
  		function level3()  //Movement becomes completely unpredictable.
  		{
  				
+ 				
+ 				collision();
  				$("#rider").attr('src','test_image/rider7.png');
  				
  				$("textarea").append('    =>Evil Troll appeared. Your keys are now confused as F@#*.<=' + '&#xA;');
@@ -332,28 +347,28 @@
 		          var p_m_rand = rand * (Math.random() < 0.5? -1:1);
 
 
-		          if(data.keyCode == 37){
+		          if(data.keyCode == 65){
 		            //direction = "top";
 		            if(top > 10)
 	            	{
 		            top = y - p_m_rand;
 			        }
 		          }
-		          else if(data.keyCode == 39){
+		          else if(data.keyCode == 68){
 		            //direction = "down";
 		            if(top < 400)
 	            	{
 		            top = y + p_m_rand;
 		        	}
 		          }
-		          else if(data.keyCode == 38){
+		          else if(data.keyCode == 87){
 		            //direction = "left";
 		            if(left > 10)
 	            	{
 		            left = x - p_m_rand;
 		        	}
 		          }
-		          else if(data.keyCode == 40){
+		          else if(data.keyCode == 83){
 		            //direction = "right";
 		            if(left < 400)
 	            	{
